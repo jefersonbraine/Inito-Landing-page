@@ -62,6 +62,15 @@ Objetivo atual: recriar toda a landing page do InitoBot em Angular moderno, mant
 |-- tailwind.config.js
 ```
 
+## 📁 Arquitetura do Projeto
+
+Este projeto utiliza Angular Standalone Components e segue uma arquitetura baseada em domínios:
+
+- `src/app/core/`: Serviços globais, interceptors e configurações únicas (Singletons).
+- `src/app/shared/`: Componentes visuais genéricos (botões, modais) compartilhados por toda a aplicação.
+- `src/app/layout/`: Componentes estruturais (Header, Footer, Navbar).
+- `src/app/features/`: Módulos de negócio da aplicação (ex: `landing` page e suas seções).
+
 ## Estado atual da migracao
 
 - O app Angular esta inicializado e configurado com Standalone.
