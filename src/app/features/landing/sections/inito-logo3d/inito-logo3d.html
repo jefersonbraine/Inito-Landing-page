@@ -1,0 +1,119 @@
+<div class="logo-root" [style.width.px]="size()" [style.height.px]="size()" aria-hidden="true">
+  <div class="outer-glow"></div>
+
+  <div class="inner-glow"></div>
+
+  <div class="logo-float">
+    <svg
+      [attr.width]="size() * 0.65"
+      [attr.height]="size() * 0.65"
+      viewBox="0 0 200 220"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="24"
+        y="72"
+        width="152"
+        height="140"
+        rx="30"
+        fill="rgba(180,60,0,0.4)"
+        transform="translate(4, 8)"
+      />
+
+      <path
+        d="M100 75 Q115 50 128 35"
+        stroke="#c2410c"
+        stroke-width="9"
+        stroke-linecap="round"
+        fill="none"
+      />
+      <path
+        d="M100 72 Q115 47 128 32"
+        stroke="url(#antennaGrad)"
+        stroke-width="8"
+        stroke-linecap="round"
+        fill="none"
+      />
+
+      <circle cx="134" cy="30" r="12" fill="rgba(180,60,0,0.5)" transform="translate(3,5)" />
+      <circle cx="134" cy="28" r="12" fill="url(#ballGrad)" />
+      <circle cx="130" cy="23" r="4" fill="rgba(255,255,255,0.4)" />
+
+      <rect x="26" y="76" width="152" height="140" rx="30" fill="rgba(150,50,0,0.5)" />
+
+      <rect x="22" y="72" width="152" height="140" rx="30" fill="url(#bodyGrad)" />
+
+      <rect x="22" y="72" width="152" height="70" rx="30" fill="url(#shineGrad)" opacity="0.4" />
+
+      <circle cx="68" cy="128" r="20" fill="rgba(0,0,0,0.15)" transform="translate(2,3)" />
+      <circle cx="68" cy="126" r="20" fill="#1a0800" />
+      <circle cx="61" cy="119" r="6" fill="rgba(255,255,255,0.15)" />
+
+      <circle cx="132" cy="128" r="20" fill="rgba(0,0,0,0.15)" transform="translate(2,3)" />
+      <circle cx="132" cy="126" r="20" fill="#1a0800" />
+      <circle cx="125" cy="119" r="6" fill="rgba(255,255,255,0.15)" />
+
+      <path
+        d="M78 168 Q100 188 122 168"
+        stroke="rgba(0,0,0,0.15)"
+        stroke-width="8"
+        stroke-linecap="round"
+        fill="none"
+        transform="translate(1,3)"
+      />
+      <path
+        d="M78 166 Q100 186 122 166"
+        stroke="#1a0800"
+        stroke-width="7"
+        stroke-linecap="round"
+        fill="none"
+      />
+
+      <defs>
+        <linearGradient
+          id="bodyGrad"
+          x1="22"
+          y1="72"
+          x2="174"
+          y2="212"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#fb923c" />
+          <stop offset="40%" stop-color="#f97316" />
+          <stop offset="100%" stop-color="#c2410c" />
+        </linearGradient>
+        <linearGradient
+          id="shineGrad"
+          x1="22"
+          y1="72"
+          x2="174"
+          y2="142"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="white" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="white" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient
+          id="antennaGrad"
+          x1="100"
+          y1="72"
+          x2="128"
+          y2="32"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stop-color="#fb923c" />
+          <stop offset="100%" stop-color="#fdba74" />
+        </linearGradient>
+        <radialGradient id="ballGrad" cx="40%" cy="35%">
+          <stop offset="0%" stop-color="#fdba74" />
+          <stop offset="100%" stop-color="#ea580c" />
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="orbit-wrap">
+    <div class="orbit" [style.width.px]="size() * 0.9" [style.height.px]="size() * 0.4"></div>
+  </div>
+</div>
