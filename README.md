@@ -96,18 +96,6 @@ npm start
 
 Aplicacao em: `http://localhost:4200`
 
-### 3) Rodar a referencia React (opcional)
-
-Em outro terminal:
-
-```bash
-cd Design
-npm install
-npm run dev
-```
-
-Aplicacao em: `http://localhost:5173`
-
 ## Scripts uteis
 
 ### Raiz (Angular)
@@ -154,12 +142,5 @@ ng generate service core/services/navigation
 ng generate --help
 ```
 
-## Observacoes importantes
 
-- A pasta `Design/` funciona como referencia de UX/UI e nao como produto final alvo.
-- O foco do repositorio e a versao Angular na raiz.
-- Caso deseje comparar comportamento visual, rode os dois projetos localmente em paralelo.
 
-## Licenca
-
-Definir licenca do projeto (ex.: MIT) em um arquivo `LICENSE` na raiz.
