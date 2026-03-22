@@ -117,15 +117,6 @@ Aplicacao em: `http://localhost:5173`
 - `npm run watch` - build em modo watch (development)
 - `npm test` - executa testes unitarios (Vitest)
 
-### `Design/` (React)
-
-- `npm run dev` - servidor Vite
-- `npm run build` - build Vite
-- `npm run preview` - preview do build
-- `npm run lint` - lint
-- `npm run lint:fix` - lint com correcao automatica
-- `npm run typecheck` - validacao de tipos/config JS
-
 ## Arquitetura Angular (direcao recomendada)
 
 Durante a migracao, a organizacao sugerida para escalar o projeto:
