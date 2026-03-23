@@ -7,6 +7,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { ScrollStoryline } from '../scroll-storyline/scroll-storyline';
 
 type FeatureId = 'moderation' | 'mentor' | 'onboarding';
 
@@ -50,7 +51,7 @@ interface FeatureCodeToken {
 
 @Component({
   selector: 'app-features',
-  imports: [],
+  imports: [ScrollStoryline],
   templateUrl: './features.html',
   styleUrl: './features.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
