@@ -1,0 +1,128 @@
+<section id="features" class="bg-[#080a0f]">
+  <div class="border-t border-white/5 px-6 lg:px-8 py-20">
+    <div class="max-w-7xl mx-auto reveal-up" data-reveal>
+      <p class="text-xs font-semibold tracking-[0.3em] uppercase text-gray-600 mb-4">
+        FUNCIONALIDADES
+      </p>
+      <h2
+        class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight reveal-words"
+        data-reveal
+      >
+        <span class="word" style="--word-index: 0">Tudo</span>
+        <span class="word" style="--word-index: 1">que</span>
+        <span class="word" style="--word-index: 2">você</span>
+        <span class="word" style="--word-index: 3">precisa</span>
+      </h2>
+    </div>
+  </div>
+
+  @for (feature of features(); track feature.id; let index = $index) {
+    <div class="border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div
+            [attr.class]="
+              (index % 2 === 1 ? 'lg:order-2 ' : '') +
+              (index % 2 === 0 ? 'reveal-left' : 'reveal-right')
+            "
+            data-reveal
+          >
+            <div class="flex items-center gap-4 mb-8">
+              <span class="text-xs font-bold tracking-[0.3em] text-orange-500">{{
+                feature.label
+              }}</span>
+              <div class="flex-1 h-px bg-white/6"></div>
+            </div>
+
+            <div class="flex items-center gap-4 mb-6">
+              <svg
+                class="w-6 h-6 text-orange-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  [attr.d]="iconPaths[feature.icon]"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white">
+                {{ feature.title }}
+              </h3>
+            </div>
+
+            <p class="text-gray-500 text-base leading-relaxed mb-10 max-w-md">
+              {{ feature.description }}
+            </p>
+
+            <div class="space-y-0 border border-white/6 rounded-xl overflow-hidden">
+              @for (highlight of feature.highlights; track highlight.text; let hIndex = $index) {
+                <div
+                  class="flex items-center gap-4 px-5 py-4 border-b border-white/5 last:border-b-0 hover:bg-white/2 transition-colors reveal-up"
+                  data-reveal
+                  [style.--reveal-delay]="hIndex * 120 + 'ms'"
+                >
+                  <svg
+                    class="w-4 h-4 text-orange-500 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      [attr.d]="iconPaths[highlight.icon]"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span class="text-gray-400 text-sm">{{ highlight.text }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div
+            [attr.class]="
+              (index % 2 === 1 ? 'lg:order-1 ' : '') +
+              (index % 2 === 0 ? 'reveal-right' : 'reveal-left')
+            "
+            data-reveal
+            style="--reveal-delay: 90ms"
+          >
+            <div class="bg-[#0d0f14] border border-white/6 rounded-xl overflow-hidden">
+              <div
+                class="px-4 py-3 border-b border-white/6 bg-[#0b0d11] flex items-center justify-between"
+              >
+                <span class="text-xs text-gray-500">{{ feature.id }}.py</span>
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-red-400/70"></span>
+                  <span class="w-2 h-2 rounded-full bg-yellow-400/70"></span>
+                  <span class="w-2 h-2 rounded-full bg-green-400/70"></span>
+                </div>
+              </div>
+              <div class="feature-code-shell p-5 text-xs sm:text-sm text-gray-300">
+                @for (line of feature.codeLines; track $index) {
+                  <div class="feature-code-line">
+                    <span class="feature-code-line-text">
+                      @for (token of line.tokens; track $index) {
+                        <span [attr.class]="'feature-code-token ' + token.className">{{
+                          token.text
+                        }}</span>
+                      }
+                    </span>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</section>
