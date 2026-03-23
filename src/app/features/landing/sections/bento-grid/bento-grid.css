@@ -1,0 +1,68 @@
+:host {
+  display: block;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  transform: translateY(36px);
+}
+
+.reveal-left {
+  transform: translateX(-36px);
+}
+
+.reveal-right {
+  transform: translateX(36px);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.reveal-words .word {
+  display: inline-block;
+  margin-right: 0.25em;
+  opacity: 0.08;
+  transform: translateY(12px);
+}
+
+.reveal-words .word:last-child {
+  margin-right: 0;
+}
+
+.reveal-words.is-visible .word {
+  animation: word-reveal 0.55s ease forwards;
+  animation-delay: calc(var(--word-index, 0) * 85ms);
+}
+
+@keyframes word-reveal {
+  from {
+    opacity: 0.08;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .reveal-words .word,
+  .reveal-words.is-visible .word {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

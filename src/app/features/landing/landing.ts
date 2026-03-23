@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HeroSection } from './sections/hero-section/hero-section';
 import { Footer } from '../../layout/footer/footer';
+import { BentoGrid } from './sections/bento-grid/bento-grid';
 
 @Component({
   selector: 'app-landing',
-  imports: [HeroSection, Footer],
+  imports: [HeroSection, Footer, BentoGrid],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })
