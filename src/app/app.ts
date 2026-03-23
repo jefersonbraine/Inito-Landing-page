@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { HeroSection } from './features/landing/sections/hero-section/hero-section';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [HeroSection],
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
