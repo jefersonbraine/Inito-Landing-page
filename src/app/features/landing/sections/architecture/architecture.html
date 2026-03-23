@@ -1,0 +1,95 @@
+<section
+  id="architecture"
+  class="bg-[#080a0f] border-t border-white/[0.05] py-20 lg:py-28 px-6 lg:px-8 relative overflow-hidden"
+>
+  <div
+    class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+  >
+    <span
+      class="text-[20vw] font-black text-white/[0.02] leading-none tracking-tighter whitespace-nowrap"
+    >
+      STACK
+    </span>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+      <div class="arch-reveal-left" data-reveal>
+        <p class="text-xs font-semibold tracking-[0.3em] uppercase text-gray-600 mb-4">
+          ARQUITETURA
+        </p>
+        <h2
+          class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight arch-reveal-words"
+          data-reveal
+        >
+          <span class="word" style="--word-index: 0">Construído</span>
+          <span class="word" style="--word-index: 1">para</span>
+          <br />
+          <span class="word text-orange-500" style="--word-index: 2">Escalar</span>
+        </h2>
+      </div>
+
+      <div class="arch-reveal-right" data-reveal>
+        <p class="text-gray-500 text-sm max-w-xs leading-relaxed lg:text-right">
+          Stack tecnológico moderno e profissional para garantir performance e confiabilidade 24/7.
+        </p>
+      </div>
+    </div>
+
+    <div class="border border-white/[0.06] rounded-2xl overflow-hidden">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        @for (tech of techStack; track tech.name; let index = $index) {
+          <div
+            [attr.class]="techItemClass(index)"
+            data-reveal
+            [style.--reveal-delay]="index * 80 + 'ms'"
+          >
+            <div [attr.class]="iconWrapClass(tech)">
+              <svg
+                [attr.class]="iconClass(tech)"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                @for (segment of iconPaths[tech.key]; track $index) {
+                  <path
+                    [attr.d]="segment"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                }
+              </svg>
+            </div>
+
+            <div>
+              <p class="text-white font-bold text-sm">{{ tech.name }}</p>
+              <p class="text-gray-600 text-xs mt-0.5">{{ tech.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="arch-reveal-up" data-reveal>
+      <div
+        class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-white/[0.05]"
+      >
+        <p class="text-gray-600 text-sm">
+          <span class="text-white font-semibold">100% Open Source</span>
+          - contribuições são bem-vindas
+        </p>
+        <a
+          href="https://github.com/jefersonbraine/Inito-Landing-page"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-semibold tracking-wider uppercase text-orange-500 hover:text-orange-400 transition-colors"
+        >
+          Ver no GitHub ->
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

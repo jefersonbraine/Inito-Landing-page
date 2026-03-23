@@ -1,0 +1,69 @@
+:host {
+  display: block;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.arch-reveal-left {
+  transform: translateX(-24px);
+}
+
+.arch-reveal-right {
+  transform: translateX(24px);
+}
+
+.arch-reveal-up,
+.arch-reveal-up[data-reveal] {
+  transform: translateY(24px);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.arch-reveal-words .word {
+  display: inline-block;
+  margin-right: 0.25em;
+  opacity: 0.12;
+  transform: translateY(12px);
+}
+
+.arch-reveal-words .word:last-child {
+  margin-right: 0;
+}
+
+.arch-reveal-words.is-visible .word {
+  animation: arch-word-reveal 0.55s ease forwards;
+  animation-delay: calc(var(--word-index, 0) * 85ms);
+}
+
+@keyframes arch-word-reveal {
+  from {
+    opacity: 0.12;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .arch-reveal-words .word,
+  .arch-reveal-words.is-visible .word {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
