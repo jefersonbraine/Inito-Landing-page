@@ -4,9 +4,11 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  PLATFORM_ID,
   inject,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 type MessageRole = 'user' | 'inito' | 'system';
 
@@ -32,6 +34,8 @@ interface TerminalStat {
 })
 export class LiveTerminal implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
   private observer: IntersectionObserver | null = null;
   private typingInterval: ReturnType<typeof setInterval> | null = null;
   private revealTimer: ReturnType<typeof setTimeout> | null = null;
@@ -89,6 +93,10 @@ export class LiveTerminal implements AfterViewInit, OnDestroy {
   readonly inView = signal(false);
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
     const section = this.host.nativeElement.querySelector(
       '[data-live-section]',
     ) as HTMLElement | null;
@@ -125,6 +133,10 @@ export class LiveTerminal implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.observer?.disconnect();
     this.observer = null;
     this.clearTimers();

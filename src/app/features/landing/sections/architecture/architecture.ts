@@ -4,8 +4,10 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  PLATFORM_ID,
   inject,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 type TechKey = 'python' | 'discord.py' | 'SQLite' | 'docker' | 'cogs' | 'async';
 
@@ -27,6 +29,8 @@ interface TechItem {
 })
 export class Architecture implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
   private observer: IntersectionObserver | null = null;
 
   readonly techStack: TechItem[] = [
@@ -98,6 +102,10 @@ export class Architecture implements AfterViewInit, OnDestroy {
   };
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
     const animated = this.host.nativeElement.querySelectorAll('[data-reveal]');
 
     this.observer = new IntersectionObserver(
@@ -119,6 +127,10 @@ export class Architecture implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.observer?.disconnect();
     this.observer = null;
   }
