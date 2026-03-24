@@ -4,9 +4,11 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  PLATFORM_ID,
   inject,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ScrollStoryline } from '../scroll-storyline/scroll-storyline';
 
 type FeatureId = 'moderation' | 'mentor' | 'onboarding';
@@ -58,6 +60,8 @@ interface FeatureCodeToken {
 })
 export class Features implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
   private observer: IntersectionObserver | null = null;
   private readonly pythonKeywords = new Set([
     'import',
@@ -242,6 +246,10 @@ export class Features implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
     const animated = this.host.nativeElement.querySelectorAll('[data-reveal]');
 
     this.observer = new IntersectionObserver(
@@ -263,6 +271,10 @@ export class Features implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.observer?.disconnect();
     this.observer = null;
   }

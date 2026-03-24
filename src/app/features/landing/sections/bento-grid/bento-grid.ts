@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  PLATFORM_ID,
+  inject,
+} from '@angular/core';
 
 @Component({
   selector: 'app-bento-grid',
@@ -8,9 +16,15 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, inject } from '@angula
 })
 export class BentoGrid implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
   private observer: IntersectionObserver | null = null;
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser || typeof IntersectionObserver === 'undefined') {
+      return;
+    }
+
     const animated = this.host.nativeElement.querySelectorAll('[data-reveal]');
 
     this.observer = new IntersectionObserver(
@@ -32,6 +46,10 @@ export class BentoGrid implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.observer?.disconnect();
     this.observer = null;
   }

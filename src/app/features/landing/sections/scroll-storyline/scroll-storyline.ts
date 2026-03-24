@@ -4,10 +4,12 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  PLATFORM_ID,
   computed,
   inject,
   signal,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-scroll-storyline',
@@ -18,6 +20,8 @@ import {
 })
 export class ScrollStoryline implements AfterViewInit, OnDestroy {
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly isBrowser = isPlatformBrowser(this.platformId);
   private trackElement: HTMLElement | null = null;
   private animationFrame: number | null = null;
   private readonly targetProgress = signal(0);
@@ -28,6 +32,10 @@ export class ScrollStoryline implements AfterViewInit, OnDestroy {
   readonly dotTop = computed(() => `${this.progress() * 100}%`);
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.trackElement = this.host.nativeElement.querySelector(
       '[data-storyline-track]',
     ) as HTMLElement | null;
@@ -39,6 +47,10 @@ export class ScrollStoryline implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     window.removeEventListener('scroll', this.handleViewportChange);
     window.removeEventListener('resize', this.handleViewportChange);
     this.stopAnimationLoop();
@@ -50,9 +62,14 @@ export class ScrollStoryline implements AfterViewInit, OnDestroy {
   };
 
   private updateTargetProgress(): void {
+    if (!this.isBrowser) {
+      this.targetProgress.set(0);
+      return;
+    }
+
     const element = this.trackElement;
 
-    if (!element) {
+    if (!element || typeof element.getBoundingClientRect !== 'function') {
       this.targetProgress.set(0);
       return;
     }
@@ -72,6 +89,10 @@ export class ScrollStoryline implements AfterViewInit, OnDestroy {
   }
 
   private startAnimationLoop(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     if (this.animationFrame !== null) {
       return;
     }
@@ -95,6 +116,10 @@ export class ScrollStoryline implements AfterViewInit, OnDestroy {
   }
 
   private stopAnimationLoop(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     if (this.animationFrame === null) {
       return;
     }
