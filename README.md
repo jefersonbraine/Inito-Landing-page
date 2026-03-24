@@ -186,7 +186,3 @@ ng generate --help
 - A pasta `Design/` funciona como referencia de UX/UI e nao como produto final alvo.
 - O foco do repositorio e a versao Angular na raiz.
 - Caso deseje comparar comportamento visual, rode os dois projetos localmente em paralelo.
-
-## Licenca
-
-Definir licenca do projeto (ex.: MIT) em um arquivo `LICENSE` na raiz.
