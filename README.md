@@ -22,15 +22,6 @@ Objetivo atual: recriar toda a landing page do InitoBot em Angular moderno, mant
 - Tailwind CSS 4 + PostCSS
 - Vitest + JSDOM para testes unitarios
 
-### Design de referencia (`Design/`)
-
-- React 18 + Vite
-- Tailwind CSS 3
-- Framer Motion
-- TanStack React Query
-- Radix UI
-- Integracoes Base44
-
 ## Estrutura do repositorio
 
 ```text
