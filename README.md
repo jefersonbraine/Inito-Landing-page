@@ -1,179 +1,116 @@
 # InitoBot Landing Page
 
-Landing page oficial do InitoBot com arquitetura em transicao para Angular.
+Landing page oficial do InitoBot, implementada em Angular 21 com Standalone Components.
 
-## Visao geral
+## Visao Geral
 
-Este repositorio contem dois contextos de front-end:
+Este repositorio contem a aplicação web da landing page, com foco em:
 
-- `raiz/` (projeto principal): aplicacao Angular 21 com Standalone Components
-- `Design/` (referencia): implementacao React + Vite usada como base visual e funcional para a migracao
+1. Performance de carregamento.
+2. Componentização por domínio.
+3. Testes unitarios para seções críticas.
+4. Pipeline CI com validação de build e testes.
 
-Objetivo atual: recriar toda a landing page do InitoBot em Angular moderno, mantendo identidade visual, animacoes e estrutura de secoes do projeto React.
-
-## Stack principal
-
-### Angular (raiz)
+## Stack
 
 - Angular 21.2
-- Standalone Components
+- TypeScript 5.9 (strict)
 - Angular Router
-- TypeScript 5.9 em modo strict
 - Tailwind CSS 4 + PostCSS
-- Vitest + JSDOM para testes unitarios
-
-## Estrutura do repositorio
-
-```text
-.
-|-- src/
-|   |-- app/
-|   |   |-- app.ts          # root component Angular
-|   |   |-- app.html        # template (ainda padrao do Angular CLI)
-|   |   |-- app.routes.ts   # rotas da aplicacao Angular
-|   |   |-- app.config.ts   # providers globais
-|   |-- main.ts             # bootstrapApplication()
-|   |-- styles.css          # estilos globais + Tailwind
-|
-|-- public/                 # assets copiados no build Angular
-|
-|-- Design/                 # implementacao React usada como referencia
-|   |-- main.jsx
-|   |-- pages.config.js
-|   |-- src/
-|   |   |-- App.jsx
-|   |   |-- components/
-|   |       |-- landing/    # secoes da landing (Hero, Features, Roadmap...)
-|   |       |-- pages/
-|   |       |-- ui/
-|   |       |-- lib/
-|
-|-- angular.json
-|-- package.json
-|-- tailwind.config.js
-```
-
-## 📁 Arquitetura do Projeto
-
-Este projeto utiliza Angular Standalone Components e segue uma arquitetura baseada em domínios:
-
-- `src/app/core/`: Serviços globais, interceptors e configurações únicas (Singletons).
-- `src/app/shared/`: Componentes visuais genéricos (botões, modais) compartilhados por toda a aplicação.
-- `src/app/layout/`: Componentes estruturais (Header, Footer, Navbar).
-- `src/app/features/`: Módulos de negócio da aplicação (ex: `landing` page e suas seções).
-
-## Estado atual da migracao
-
-- O app Angular esta inicializado e configurado com Standalone.
-- O template raiz Angular (`src/app/app.html`) ainda esta com o conteudo padrao do scaffold.
-- A versao React em `Design/` contem a landing completa, com as secoes e interacoes que servem de referencia para o porte.
-
-## Secoes da landing existentes em `Design/`
-
-Principais componentes de referencia:
-
-- `Navbar`
-- `HeroSection`
-- `BentoGrid`
-- `LiveTerminal`
-- `FeatureSection`
-- `ArchitectureSection`
-- `RoadmapSection`
-- `Footer`
-- componentes de efeito/animacao (`ScrollStoryline`, `ScrollFade`, `RevealText`, etc.)
+- Vitest + JSDOM
 
 ## Requisitos
 
 - Node.js 20+
 - npm 10+
 
-## Como executar
+## Setup do Projeto
 
-### 1) Instalar dependencias (Angular)
-
-Na raiz do repositorio:
+1. Instale dependencias:
 
 ```bash
 npm install
 ```
 
-### 2) Rodar Angular (projeto principal)
+2. Execute o ambiente local:
 
 ```bash
 npm start
 ```
 
-Aplicacao em: `http://localhost:4200`
+3. Acesse:
 
-### 3) Rodar a referencia React (opcional)
-
-Em outro terminal:
-
-```bash
-cd Design
-npm install
-npm run dev
+```text
+http://localhost:4200
 ```
 
-Aplicacao em: `http://localhost:5173`
+## Scripts
 
-## Scripts uteis
+| Script                                   | Descricao                                  |
+| ---------------------------------------- | ------------------------------------------ |
+| `npm start`                              | Inicia servidor de desenvolvimento Angular |
+| `npm run build`                          | Gera build de producao                     |
+| `npm run watch`                          | Build em modo watch (`development`)        |
+| `npm test`                               | Executa testes unitários                   |
+| `npm run serve:ssr:web-initobot-landing` | Sobe a versao SSR após build               |
 
-### Raiz (Angular)
+## Estrutura de Pastas
 
-- `npm start` - inicia servidor de desenvolvimento Angular
-- `npm run build` - gera build de producao
-- `npm run watch` - build em modo watch (development)
-- `npm test` - executa testes unitarios (Vitest)
+```text
+src/
+	app/
+		core/       # serviços singleton, infra e configurações globais
+		shared/     # componentes reutilizáveis, utilitários e diretivas comuns
+		features/   # módulos por domínio (ex: landing)
+		layout/     # componentes estruturais (header/footer/shell)
+		pages/      # composição de páginas e rotas de alto nível
+```
 
-### `Design/` (React)
+## Fluxo de Contribuição
 
-- `npm run dev` - servidor Vite
-- `npm run build` - build Vite
-- `npm run preview` - preview do build
-- `npm run lint` - lint
-- `npm run lint:fix` - lint com correcao automatica
-- `npm run typecheck` - validacao de tipos/config JS
+1. Crie uma branch a partir da `main`:
 
-## Arquitetura Angular (direcao recomendada)
+```bash
+git checkout -b feature/nome-da-issue
+```
 
-Durante a migracao, a organizacao sugerida para escalar o projeto:
+2. Desenvolva com commits pequenos e objetivos.
 
-- `src/app/core/` para servicos singleton, interceptors e infra
-- `src/app/shared/` para componentes reutilizaveis e utilitarios de UI
-- `src/app/features/landing/` para secoes especificas da landing
-- `src/app/pages/` para composicao de telas/rotas
+3. Antes de abrir PR, execute:
 
-## Build e qualidade
+```bash
+npm run build
+npm test -- --watch=false
+```
 
-- Compilacao TypeScript em modo strict
-- `strictTemplates` habilitado no Angular Compiler
-- Testes unitarios via Vitest
-- Tailwind configurado na raiz para arquivos Angular (`src/**/*.{html,ts}`)
+4. Abra Pull Request com:
 
-## Roadmap resumido
+- contexto do problema
+- solução aplicada
+- evidências de teste (saida dos comandos)
+- checklist de impacto (UI, acessibilidade, testes)
 
-1. Definir rotas iniciais em `app.routes.ts`
-2. Criar pagina Home Angular standalone
-3. Migrar secoes da landing React para Angular componente por componente
-4. Consolidar sistema de estilos/tokens na implementacao Angular
-5. Remover dependencias de referencia quando a migracao estiver concluida
+5. Aguarde validação de CI e review.
 
-## Comandos Angular CLI uteis
+## CI e Qualidade
+
+O workflow em `.github/workflows/ci.yml` valida:
+
+1. Instalação de dependencias.
+2. Build da aplicação.
+3. Execução de testes unitários.
+
+Falhas em build ou testes devem bloquear merge quando a branch `main` estiver com regras de proteção e checks obrigatórios habilitados no GitHub.
+
+## Comandos Angular CLI Uteis
 
 ```bash
 # gerar componente standalone
-ng generate component features/landing/hero --standalone
+ng generate component features/landing/nome-da-secao --standalone
 
 # gerar service
-ng generate service core/services/navigation
+ng generate service core/services/nome-do-service
 
-# listar opcoes de schematics
+# ajuda geral
 ng generate --help
 ```
-
-## Observacoes importantes
-
-- A pasta `Design/` funciona como referencia de UX/UI e nao como produto final alvo.
-- O foco do repositorio e a versao Angular na raiz.
-- Caso deseje comparar comportamento visual, rode os dois projetos localmente em paralelo.
