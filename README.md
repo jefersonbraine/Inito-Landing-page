@@ -100,7 +100,7 @@ O workflow em `.github/workflows/ci.yml` valida:
 2. Build da aplicação.
 3. Execução de testes unitários.
 
-Falhas em build ou testes devem bloquear merge quando a branch `main` estiver com regras de proteção e checks obrigatórios habilitados no GitHub.
+Falhas em build ou testes irão bloquear o merge quando a branch `main`.
 
 ## Comandos Angular CLI Uteis
 
