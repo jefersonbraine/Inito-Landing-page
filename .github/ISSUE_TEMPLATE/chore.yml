@@ -1,0 +1,59 @@
+name: Chore
+description: Tarefa tecnica/operacional sem entrega funcional direta
+title: "chore: "
+labels:
+  - type:chore
+  - area:ci
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Resumo
+      description: Descreva a manutencao necessaria.
+      placeholder: Explique a tarefa de chore.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Justificativa
+      description: Por que essa tarefa e importante agora?
+      placeholder: Risco, debito tecnico, compliance, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Entregaveis
+      description: O que deve ser alterado/concluido.
+      placeholder: |
+        - [ ] Item 1
+        - [ ] Item 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto esperado
+      description: Impacto em build, testes, DX, docs, infraestrutura, etc.
+      placeholder: Detalhe o ganho esperado.
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencias
+      description: Issues relacionadas, bloqueios ou ordem de execucao.
+      placeholder: ex.: #3, #26
+
+  - type: checkboxes
+    id: quality
+    attributes:
+      label: Qualidade
+      options:
+        - label: Mudancas foram validadas localmente
+          required: true
+        - label: Documentacao foi atualizada quando necessario
+          required: false
