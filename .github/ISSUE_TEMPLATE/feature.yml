@@ -1,0 +1,59 @@
+name: Feature
+description: Solicite uma nova funcionalidade
+title: "feat: "
+labels:
+  - type:feature
+  - area:core
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: Qual problema ou oportunidade motivou esta feature?
+      placeholder: Descreva o contexto e o impacto esperado.
+    validations:
+      required: true
+
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objetivo
+      description: O que deve ser entregue?
+      placeholder: Descreva o resultado funcional esperado.
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de aceite
+      description: Liste criterios mensuraveis para considerar a entrega pronta.
+      placeholder: |
+        - [ ] Criterio 1
+        - [ ] Criterio 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_notes
+    attributes:
+      label: Notas tecnicas
+      description: Restrições, dependencias, riscos ou direcoes tecnicas.
+      placeholder: Inclua detalhes tecnicos relevantes.
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencias
+      description: Issues ou tarefas relacionadas.
+      placeholder: ex.: #12, #25
+
+  - type: checkboxes
+    id: done_definition
+    attributes:
+      label: Definicao de pronto
+      options:
+        - label: Escopo e criterios de aceite estao claros
+          required: true
+        - label: Impacto em UI/arquitetura foi considerado
+          required: false
