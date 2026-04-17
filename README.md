@@ -6,6 +6,8 @@
 
 <br />
 
+
+
 <a href="#">
   <img src="https://img.shields.io/badge/STATUS-EM%20PRODUÇÃO-f97316?style=for-the-badge&labelColor=0a0a0a" />
 </a>
@@ -43,6 +45,10 @@
 ---
 
 <br />
+
+
+<img src="public\assets\PRINT - Site do Inito.png" alt="Print do site do Inito"/>
+
 
 <div align="center">
 
